@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, "src")
 
 # tudo importado do GUI tkinter
 import tkinter as tk
@@ -7,10 +9,12 @@ from tkinter import ttk
 from functools import partial
 
 #Importando funções e classes de um script criado
-from rootCreate import window
-import databaseSqlite3
+from databaseSqlite3 import *
+from rootCreate import *
 
-db = databaseSqlite3.database()
+db = database()
+printar()
+
 # pip install pillow
 from PIL import ImageTk, Image
 
