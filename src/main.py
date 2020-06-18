@@ -3,9 +3,14 @@
 import tkinter as tk
 from tkinter import ttk
 
+# utilizar para passar parametros na função, já que no command= recebe a instancia da função
+from functools import partial
+
 #Importando funções e classes de um script criado
 from rootCreate import window
+import databaseSqlite3
 
+db = databaseSqlite3.database()
 # pip install pillow
 from PIL import ImageTk, Image
 
