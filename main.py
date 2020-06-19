@@ -1,5 +1,4 @@
-import sys
-sys.path.insert(0, "src")
+# Codigo Principal
 
 # tudo importado do GUI tkinter
 import tkinter as tk
@@ -9,23 +8,41 @@ from tkinter import ttk
 from functools import partial
 
 #Importando funções e classes de um script criado
-from databaseSqlite3 import *
-from rootCreate import *
+import databaseSqlite3 
+import functions as sf
 
-db = database()
-printar()
+db = databaseSqlite3.database()
 
 # pip install pillow
 from PIL import ImageTk, Image
 
+# db.dbCriarTabela()
+# db.dbInserirDados([(sf.DataHora("data"),sf.DataHora("tempo"),500,5.5,30,26,20)])
+# db.dbLerTodosDados()
 
+# variavel = tk.StringVar()
+verde = "#65aa34"
+
+
+print(sf.DataHora("tempo"))
 # criando a janela principal e tela inteira
 root = tk.Tk()
 root.title("Qualidade dos Nutrientes da Hidroponia de alface")
 root.iconphoto(False, tk.PhotoImage(file="assets/alface-icon.png"))
 pad = 15
-root.geometry("{0}x{1}+0+-3".format(root.winfo_screenwidth()-pad, root.winfo_screenheight()-pad))
-root["bg"] = "#6534ff"
+widthMaxPx = root.winfo_screenwidth()
+heightMaxPx = root.winfo_screenheight()
+root.geometry("{0}x{1}+0+-3".format(widthMaxPx-pad, heightMaxPx-pad))
+root["bg"] = verde
+# cabeçalho
+ctHeader = tk.Frame(root, bg=verde)
+lbH1 = tk.Label(ctHeader, text="Hidroponia", bg=verde, font=("Roboto",20))
+lbH2 = tk.Label(ctHeader, text="Olá, Waldir", bg="green", padx=200)
+
+ctHeader.pack(side=tk.TOP,fill='x')
+lbH1.pack(side=tk.LEFT, expand=1)
+lbH2.pack(side=tk.RIGHT, fill='y')
+
 
 # criando tab na janela principal
 tabControl = ttk.Notebook(root)
@@ -41,7 +58,7 @@ img1 = ImageTk.PhotoImage(Image.open("assets/bg.jpg"))
 background1 = tk.Label(win1, image=img1)
 background1.place(x=0, y=win1.winfo_screenheight()/6, relwidth=1, relheight=1)
 
-bt = tk.Button(win1, text="CLIQUE1")
+bt = tk.Button(win1, text="CLIQUE1", command=sf.botao1)
 bt.pack()
 
 # Implementação de dados para janela 2

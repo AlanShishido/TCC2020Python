@@ -1,19 +1,17 @@
 import sqlite3
+
 class database:
-    nomeTabela = "tabela-tcc"
+    nomeTabela = "NutrienteDatabase"
     lista = [
         ["id", "INTEGER PRIMARY KEY AUTOINCREMENT"],
-        ["nome", "TEXT NOT NULL"],
-        ["idade", "INTEGER"],
-        ["cpf", "TEXT"],
-        ["fone", "TEXT"],
-        ["cidade", "TEXT"],
-        ["criado", "DATE NOT NULL"]
+        ["data", "DATE NOT NULL"],
+        ["tempo", "TIME NOT NULL"],
+        ["condutividade", "INTEGER"],
+        ["nivel_ph", "DOUBLE"],
+        ["temperatura_ambiente", "INTEGER"],
+        ["temperatura_agua", "INTEGER"],
+        ["umidade_ambiente", "INTEGER"]
     ]
-    
-    criarTabela = ""
-    inserirDados = ""
-    lerDados = ""
 
     def __init__(self):
         pass
@@ -22,7 +20,7 @@ class database:
     def textCriarTabela(self):
         texto = "CREATE TABLE IF NOT EXISTS "
         texto += self.nomeTabela
-        texto += ".db ("
+        texto += " ("
         for data in self.lista:
             for d in data:
                 # texto += " "
@@ -35,17 +33,19 @@ class database:
         return texto
 
     def textInserirTabela(self):
-        texto = "INSERT INTO " + self.nomeTabela + ".db ("
+        texto = "INSERT INTO " + self.nomeTabela + " ("
         for dados in self.lista:
-            texto += dados[0]
-            if dados != self.lista[-1]:
-                texto += ", "
+            if dados != self.lista[0]:
+                texto += dados[0]
+                if dados != self.lista[-1]:
+                    texto += ", "
         texto += ") VALUES ("
-        for i in range(0,len(self.lista)):
+        for i in range(1,len(self.lista)):
             texto += "?"
             if i != len(self.lista)-1 :
                 texto+=","
         texto += ")"
+        print (texto)
         return texto
 
     def dbCriarTabela(self):
@@ -71,6 +71,28 @@ class database:
             cursor.executemany(self.textInserirTabela(), dados)
             conn.commit()
             print("Dados Inseridos")
+
+        except sqlite3.Error as error:
+            print("Erro ocorrido:", error)
+
+        finally:
+            if (conn):
+                conn.close()
+                print("Desconectou Conexão com SQLite")
+
+    def dbLerTodosDados(self):
+
+        try:
+            conn = sqlite3.connect(self.nomeTabela+".db")
+            cursor = conn.cursor()
+            
+            cursor.execute("""
+            SELECT * FROM """+ self.nomeTabela +""";
+            """)
+            print("leitura")
+            for linha in cursor.fetchall():
+                print(linha)
+                   
 
         except sqlite3.Error as error:
             print("Erro ocorrido:", error)
