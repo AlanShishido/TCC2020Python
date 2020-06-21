@@ -46,14 +46,14 @@ lbH2.pack(side=tk.RIGHT, fill='y')
 
 # criando tab na janela principal
 tabControl = ttk.Notebook(root)
+
 win1 = ttk.Frame(tabControl)
 win2 = ttk.Frame(tabControl)
 
+tabControl.pack(expand=1, fill='both')
+
 tabControl.add(win1, text="Dashboard")
 tabControl.add(win2, text="Configurações")
-
-
-
 
 # Implementação de dados para janela 1
 # background
@@ -149,19 +149,26 @@ card4_lbH2.pack()
 card4_lbP.pack()
 card4_lbImg0.pack()
 
-#  List box para mostrar os dados recebidos
-liPag1 = tk.Listbox(win1, bg="green", bd=10, width=40, font=("Roboto", 14), fg="white")
+# #  List box para mostrar os dados recebidos
+# liPag1 = tk.Listbox(win1, bg="green", bd=5, width=20, font=("Roboto", 14), fg="white")
 
-liPag1.insert(1, "Opcao 01")
-liPag1.insert(2, "Opcao 02")
-liPag1.insert(3, "Opcao 03")
-liPag1.pack(side=tk.TOP,anchor=tk.NW,fill='y', expand=1)
+# liPag1.insert(1, "Opcao 01")
+# liPag1.insert(2, "Opcao 02")
+# liPag1.insert(3, "Opcao 03")
+# liPag1.pack(side=tk.LEFT,anchor=tk.NW,fill='y', expand=1)
 
+# Text box para mostrar os dados recebidos
+txtPag1 = tk.Text(win1, bg="#12bb23", cursor=tk.DOTBOX, font=('Roboto', 14))
 
+cabecalhoDatabase = ""
+for item in db.lista:
+    cabecalhoDatabase += item[0]
+    cabecalhoDatabase += "\t"
 
+txtPag1.insert(tk.INSERT, cabecalhoDatabase)
+txtPag1.insert(tk.INSERT, "\n")
 
-
-
+txtPag1.pack(side=tk.RIGHT, anchor=tk.NE, fill='x', expand=1)
 
 # Implementação de dados para janela 2
 img2 = ImageTk.PhotoImage(Image.open("assets/bg-config.png"))
@@ -171,5 +178,6 @@ background2.place(x=0, y=0, relwidth=1, relheight=1)
 bt2 = tk.Button(win2, text="CLIQUE2")
 bt2.pack()
 
-tabControl.pack(expand=1, fill='both')
+
+# Loop do sistema
 root.mainloop()
