@@ -61,18 +61,22 @@ img1 = ImageTk.PhotoImage(Image.open("assets/bg.jpg"))
 background1 = tk.Label(win1, image=img1)
 background1.place(x=150, y=50, relwidth=1)
 
+# Conteiner do cabeçalho do tab 1
 ctPag1Header = tk.Frame(win1)
 HeaderPag1 = tk.Label(ctPag1Header, text="Dados de Qualidade do Nutriente", font=("Arial", 24, "bold"), bg="#44aa44")
 
 ctPag1Header.pack(fill="x")
 HeaderPag1.pack(fill="x")
 
+# Variaveis para os conteiner dos cards
+cardImgW = 200 # largura das imagens
+cardImgH = 200 # altura das imagens
+cardGroupBD = 18 # bordas do grupo de cartas
 
-cardImgW = 200
-cardImgH = 200
-cardGroupBD = 18
+# Conteiner do grupo de cards do tab 1
 ctPag1CardGroup = tk.Frame(win1, bg="#aaffaa")
 
+# conteiner do card 0
 ctPag1Card0 = tk.Frame(ctPag1CardGroup, bd=cardGroupBD)
 card0_lbH2 = tk.Label(ctPag1Card0, text="Condutividade:", font=("Roboto", 18, "bold"), cursor=tk.DOTBOX)
 card0_lbP = tk.Label(ctPag1Card0, text="0000", font=("Times", 14), padx=20, pady=20)
@@ -81,6 +85,7 @@ img0Pag1 = img0Pag1.resize((cardImgH,cardImgW),Image.ANTIALIAS) #The (250, 250) 
 img0Pag1 = ImageTk.PhotoImage(img0Pag1)
 card0_lbImg0 = tk.Label(ctPag1Card0, image=img0Pag1)
 
+# conteiner do card 1
 ctPag1Card1 = tk.Frame(ctPag1CardGroup, bd=cardGroupBD)
 card1_lbH2 = tk.Label(ctPag1Card1, text="Nivel de Acidez:", font=("Roboto", 18, "bold"))
 card1_lbP = tk.Label(ctPag1Card1, text="0000", font=("Times", 14), padx=20, pady=20)
@@ -89,6 +94,7 @@ img1Pag1 = img1Pag1.resize((cardImgH,cardImgW),Image.ANTIALIAS)
 img1Pag1 = ImageTk.PhotoImage(img1Pag1)
 card1_lbImg0 = tk.Label(ctPag1Card1, image=img1Pag1)
 
+# conteiner do card 2
 ctPag1Card2 = tk.Frame(ctPag1CardGroup, bd=cardGroupBD)
 card2_lbH2 = tk.Label(ctPag1Card2, text="Temperatura da água:", font=("Roboto", 18, "bold"))
 card2_lbP = tk.Label(ctPag1Card2, text="0000", font=("Times", 14), padx=20, pady=20)
@@ -97,6 +103,7 @@ img2Pag1 = img2Pag1.resize((cardImgH,cardImgW),Image.ANTIALIAS)
 img2Pag1 = ImageTk.PhotoImage(img2Pag1)
 card2_lbImg0 = tk.Label(ctPag1Card2, image=img2Pag1)
 
+# conteiner do card 3
 ctPag1Card3 = tk.Frame(ctPag1CardGroup, bd=cardGroupBD)
 card3_lbH2 = tk.Label(ctPag1Card3, text="Temperatura Ambiente:", font=("Roboto", 18, "bold"))
 card3_lbP = tk.Label(ctPag1Card3, text="0000", font=("Times", 14), padx=20, pady=20)
@@ -105,6 +112,7 @@ img3Pag1 = img3Pag1.resize((cardImgH,cardImgW),Image.ANTIALIAS)
 img3Pag1 = ImageTk.PhotoImage(img3Pag1)
 card3_lbImg0 = tk.Label(ctPag1Card3, image=img3Pag1)
 
+# conteiner do card 4
 ctPag1Card4 = tk.Frame(ctPag1CardGroup, bd=cardGroupBD)
 card4_lbH2 = tk.Label(ctPag1Card4, text="Estado Motor:", font=("Roboto", 18, "bold"))
 card4_lbP = tk.Label(ctPag1Card4, text="0000", font=("Times", 14), padx=20, pady=20)
@@ -113,29 +121,41 @@ img4Pag1 = img4Pag1.resize((cardImgH,cardImgW),Image.ANTIALIAS)
 img4Pag1 = ImageTk.PhotoImage(img4Pag1)
 card4_lbImg0 = tk.Label(ctPag1Card4, image=img4Pag1)
 
+# Arrumar grupo de cards dentro da tela
 ctPag1CardGroup.pack(side=tk.BOTTOM,fill="x")
+
 ctPag1Card0.grid(row=0, column=0)
 card0_lbH2.pack()
 card0_lbP.pack()
 card0_lbImg0.pack()
+
 ctPag1Card1.grid(row=0, column=1)
 card1_lbH2.pack()
 card1_lbP.pack()
 card1_lbImg0.pack()
+
 ctPag1Card2.grid(row=0, column=2)
 card2_lbH2.pack()
 card2_lbP.pack()
 card2_lbImg0.pack()
+
 ctPag1Card3.grid(row=0, column=3)
 card3_lbH2.pack()
 card3_lbP.pack()
 card3_lbImg0.pack()
+
 ctPag1Card4.grid(row=0, column=4)
 card4_lbH2.pack()
 card4_lbP.pack()
 card4_lbImg0.pack()
 
+#  List box para mostrar os dados recebidos
+liPag1 = tk.Listbox(win1, bg="green", bd=10, width=40, font=("Roboto", 14), fg="white")
 
+liPag1.insert(1, "Opcao 01")
+liPag1.insert(2, "Opcao 02")
+liPag1.insert(3, "Opcao 03")
+liPag1.pack(side=tk.TOP,anchor=tk.NW,fill='y', expand=1)
 
 
 
