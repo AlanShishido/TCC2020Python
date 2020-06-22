@@ -158,7 +158,7 @@ card4_lbImg0.pack()
 # liPag1.pack(side=tk.LEFT,anchor=tk.NW,fill='y', expand=1)
 
 # Text box para mostrar os dados recebidos
-txtPag1 = tk.Text(win1, bg="#12bb23", cursor=tk.DOTBOX, font=('Roboto', 14))
+txtPag1 = tk.Text(win1, bg="#12bb23", cursor=tk.DOTBOX, font=('Roboto', 14), width=300)
 
 cabecalhoDatabase = ""
 for item in db.lista:
@@ -168,7 +168,7 @@ for item in db.lista:
 txtPag1.insert(tk.INSERT, cabecalhoDatabase)
 txtPag1.insert(tk.INSERT, "\n")
 
-txtPag1.pack(side=tk.RIGHT, anchor=tk.NE, fill='x', expand=1)
+txtPag1.pack(side=tk.RIGHT, anchor=tk.NE)
 
 # Implementação de dados para janela 2
 img2 = ImageTk.PhotoImage(Image.open("assets/bg-config.png"))
